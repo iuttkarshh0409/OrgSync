@@ -1,0 +1,292 @@
+:root {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #132238;
+  background:
+    radial-gradient(circle at top left, rgba(247, 197, 72, 0.35), transparent 32%),
+    linear-gradient(135deg, #f6f2ea 0%, #dce8f4 100%);
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell,
+.auth-shell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.auth-shell {
+  display: grid;
+  place-items: center;
+}
+
+.content-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(320px, 420px) minmax(320px, 1fr);
+  align-items: start;
+}
+
+.panel {
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(19, 34, 56, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 24px 60px rgba(19, 34, 56, 0.12);
+  backdrop-filter: blur(18px);
+  padding: 24px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.auth-panel {
+  width: min(100%, 520px);
+}
+
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+.grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: #6b7b8f;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+.subtle {
+  color: #5c6a7d;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid #c7d5e4;
+  padding: 12px 14px;
+  background: #ffffff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid rgba(17, 93, 164, 0.2);
+  border-color: #115da4;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.primary,
+.ghost,
+.danger {
+  border-radius: 999px;
+  border: none;
+  padding: 11px 18px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.primary {
+  background: linear-gradient(135deg, #115da4, #0b8c7d);
+  color: white;
+}
+
+.ghost {
+  background: rgba(17, 93, 164, 0.08);
+  color: #115da4;
+}
+
+.danger {
+  background: rgba(177, 41, 41, 0.12);
+  color: #8e2020;
+}
+
+.primary:hover,
+.ghost:hover,
+.danger:hover {
+  transform: translateY(-1px);
+}
+
+.pill,
+.status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.pill {
+  background: rgba(17, 93, 164, 0.12);
+  color: #115da4;
+}
+
+.status-todo {
+  background: rgba(224, 146, 35, 0.16);
+  color: #8d5a09;
+}
+
+.status-in_progress {
+  background: rgba(17, 93, 164, 0.12);
+  color: #115da4;
+}
+
+.status-done {
+  background: rgba(11, 140, 125, 0.12);
+  color: #0b8c7d;
+}
+
+.task-list,
+.activity-list {
+  display: grid;
+  gap: 12px;
+}
+
+.task-card,
+.activity-item {
+  border: 1px solid rgba(19, 34, 56, 0.08);
+  background: rgba(246, 248, 252, 0.9);
+  border-radius: 18px;
+  padding: 14px;
+}
+
+.task-card {
+  display: grid;
+  gap: 10px;
+  text-align: left;
+}
+
+.task-card.selected {
+  border-color: #115da4;
+  box-shadow: 0 12px 30px rgba(17, 93, 164, 0.12);
+}
+
+.task-card.assigned {
+  border-left: 5px solid #0b8c7d;
+}
+
+.task-card-top,
+.activity-item-top,
+.meta-block {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.meta {
+  font-size: 0.9rem;
+  color: #405063;
+}
+
+.status-select {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  min-width: 140px;
+}
+
+.empty-state,
+.empty-detail,
+.demo-box {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(17, 93, 164, 0.06);
+}
+
+.toast {
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  border-radius: 16px;
+}
+
+.toast.error {
+  background: rgba(177, 41, 41, 0.12);
+  color: #8e2020;
+}
+
+@media (max-width: 960px) {
+  .app-shell,
+  .auth-shell {
+    padding: 18px;
+  }
+
+  .hero,
+  .content-grid,
+  .grid-two {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+}
