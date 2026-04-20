@@ -2,15 +2,15 @@ CREATE EXTENSION IF NOT EXISTS pgcrypto;
 
 CREATE TABLE IF NOT EXISTS organizations (
   id BIGSERIAL PRIMARY KEY,
-  name TEXT NOT NULL UNIQUE,
+  name VARCHAR(100) NOT NULL UNIQUE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE IF NOT EXISTS users (
   id BIGSERIAL PRIMARY KEY,
   organization_id BIGINT NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
-  full_name TEXT NOT NULL,
-  email TEXT NOT NULL UNIQUE,
+  full_name VARCHAR(50) NOT NULL,
+  email VARCHAR(100) NOT NULL UNIQUE,
   password_hash TEXT NOT NULL,
   role TEXT NOT NULL CHECK (role IN ('admin', 'member')),
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -19,8 +19,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS tasks (
   id BIGSERIAL PRIMARY KEY,
   organization_id BIGINT NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
-  title TEXT NOT NULL,
-  description TEXT NOT NULL DEFAULT '',
+  title VARCHAR(100) NOT NULL,
+  description VARCHAR(500) NOT NULL DEFAULT '',
   status TEXT NOT NULL DEFAULT 'todo' CHECK (status IN ('todo', 'in_progress', 'done')),
   created_by BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   assigned_to BIGINT REFERENCES users(id) ON DELETE SET NULL,

@@ -7,6 +7,9 @@ const statuses = [
 export function TaskForm({
   form,
   users,
+  errors,
+  constraints,
+  isSubmitDisabled,
   loading,
   mode,
   onChange,
@@ -34,8 +37,16 @@ export function TaskForm({
           value={form.title}
           onChange={onChange}
           placeholder="Ship tenant isolation review"
+          maxLength={constraints.titleMax}
           required
         />
+        {errors.title ? (
+          <span className="field-error">{errors.title}</span>
+        ) : (
+          <span className="field-hint">
+            {constraints.titleMin}-{constraints.titleMax} characters.
+          </span>
+        )}
       </label>
 
       <label>
@@ -46,7 +57,15 @@ export function TaskForm({
           onChange={onChange}
           rows="4"
           placeholder="Add context, expectations, and links"
+          maxLength={constraints.descriptionMax}
         />
+        {errors.description ? (
+          <span className="field-error">{errors.description}</span>
+        ) : (
+          <span className="field-hint">
+            Optional. Up to {constraints.descriptionMax} characters.
+          </span>
+        )}
       </label>
 
       <div className="grid-two">
@@ -74,7 +93,11 @@ export function TaskForm({
         </label>
       </div>
 
-      <button className="primary" type="submit" disabled={loading}>
+      <button
+        className="primary"
+        type="submit"
+        disabled={loading || isSubmitDisabled}
+      >
         {loading ? "Saving..." : mode === "create" ? "Create task" : "Save changes"}
       </button>
     </form>

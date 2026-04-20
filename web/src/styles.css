@@ -118,6 +118,20 @@ label {
   font-weight: 600;
 }
 
+.field-hint,
+.field-error {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.field-hint {
+  color: #5c6a7d;
+}
+
+.field-error {
+  color: #8e2020;
+}
+
 input,
 select,
 textarea {

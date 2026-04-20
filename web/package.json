@@ -1,5 +1,5 @@
 {
-  "name": "multi-tenant-task-web",
+  "name": "orgsync-web",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.2"
+    "vite": "^5.4.2",
+    "vitest": "^2.1.8"
   }
 }

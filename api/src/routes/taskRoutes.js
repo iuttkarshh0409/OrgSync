@@ -8,15 +8,33 @@ const {
   updateTask
 } = require("../controllers/taskController");
 const { authenticate } = require("../middleware/authenticate");
+const { validateRequest } = require("../middleware/validateRequest");
+const {
+  validateCreateTaskBody,
+  validateTaskIdParams,
+  validateUpdateTaskBody
+} = require("../validators/taskValidator");
 
 const router = express.Router();
 
 router.use(authenticate);
 router.get("/", listTasks);
-router.post("/", createTask);
-router.get("/:id", getTask);
-router.patch("/:id", updateTask);
-router.delete("/:id", deleteTask);
-router.get("/:id/activity", listTaskActivity);
+router.post("/", validateRequest({ body: validateCreateTaskBody }), createTask);
+router.get("/:id", validateRequest({ params: validateTaskIdParams }), getTask);
+router.patch(
+  "/:id",
+  validateRequest({ params: validateTaskIdParams, body: validateUpdateTaskBody }),
+  updateTask
+);
+router.delete(
+  "/:id",
+  validateRequest({ params: validateTaskIdParams }),
+  deleteTask
+);
+router.get(
+  "/:id/activity",
+  validateRequest({ params: validateTaskIdParams }),
+  listTaskActivity
+);
 
 module.exports = router;

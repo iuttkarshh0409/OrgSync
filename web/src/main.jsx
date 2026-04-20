@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Toaster } from "react-hot-toast";
-import App from "./App";
+import AppShell from "./AppShell";
 import "./styles.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -27,6 +27,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         }
       }}
     />
-    <App />
+    <AppShell />
   </React.StrictMode>
 );

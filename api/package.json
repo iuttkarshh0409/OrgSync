@@ -1,11 +1,15 @@
 {
-  "name": "multi-tenant-task-api",
+  "name": "orgsync-api",
   "version": "1.0.0",
   "description": "Multi-tenant task management API with JWT auth and RBAC",
   "main": "src/server.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

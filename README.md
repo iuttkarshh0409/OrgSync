@@ -1,6 +1,6 @@
-# Multi-Tenant Task Management System
+# OrgSync
 
-A full-stack task management application where multiple organizations can manage work in a shared platform while keeping data strictly isolated per tenant.
+A full-stack organization task management application where multiple organizations can manage work in a shared platform while keeping data strictly isolated per tenant.
 
 This project includes:
 
@@ -611,7 +611,7 @@ This makes it easier to audit how work changes over time inside a tenant.
 
 ## Submission Summary
 
-This project satisfies the main problem requirements by implementing:
+OrgSync satisfies the main problem requirements by implementing:
 
 - multi-tenant organization isolation
 - JWT authentication

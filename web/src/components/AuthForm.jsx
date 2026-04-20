@@ -1,6 +1,9 @@
 export function AuthForm({
   mode,
   form,
+  errors,
+  constraints,
+  isSubmitDisabled,
   loading,
   onChange,
   onSubmit,
@@ -11,7 +14,7 @@ export function AuthForm({
   return (
     <div className="panel auth-panel">
       <div>
-        <p className="eyebrow">Multi-tenant RBAC demo</p>
+        <p className="eyebrow">OrgSync</p>
         <h1>{isRegister ? "Create your organization" : "Sign in"}</h1>
         <p className="subtle">
           {isRegister
@@ -29,21 +32,39 @@ export function AuthForm({
               value={form.organizationName}
               onChange={onChange}
               placeholder="Acme Corp"
+              maxLength={constraints.organizationNameMax}
               required
             />
+            {errors.organizationName ? (
+              <span className="field-error">{errors.organizationName}</span>
+            ) : (
+              <span className="field-hint">
+                {constraints.organizationNameMin}-{constraints.organizationNameMax} characters.
+              </span>
+            )}
           </label>
         ) : null}
 
-        <label>
-          Full name
-          <input
-            name="fullName"
-            value={form.fullName}
-            onChange={onChange}
-            placeholder="Jane Doe"
-            required={isRegister}
-          />
-        </label>
+        {isRegister ? (
+          <label>
+            Full name
+            <input
+              name="fullName"
+              value={form.fullName}
+              onChange={onChange}
+              placeholder="Jane Doe"
+              maxLength={constraints.fullNameMax}
+              required
+            />
+            {errors.fullName ? (
+              <span className="field-error">{errors.fullName}</span>
+            ) : (
+              <span className="field-hint">
+                {constraints.fullNameMin}-{constraints.fullNameMax} alphabets only.
+              </span>
+            )}
+          </label>
+        ) : null}
 
         <label>
           Email
@@ -53,8 +74,17 @@ export function AuthForm({
             value={form.email}
             onChange={onChange}
             placeholder="jane@company.com"
+            maxLength={constraints.emailMax}
+            autoComplete="email"
             required
           />
+          {errors.email ? (
+            <span className="field-error">{errors.email}</span>
+          ) : (
+            <span className="field-hint">
+              Gmail addresses only (e.g. jane@gmail.com).
+            </span>
+          )}
         </label>
 
         <label>
@@ -65,11 +95,27 @@ export function AuthForm({
             value={form.password}
             onChange={onChange}
             placeholder="Password"
+            minLength={constraints.passwordMin}
+            maxLength={constraints.passwordMax}
+            autoComplete={isRegister ? "new-password" : "current-password"}
             required
           />
+          {errors.password ? (
+            <span className="field-error">{errors.password}</span>
+          ) : (
+            <span className="field-hint">
+              {isRegister
+                ? `Use ${constraints.passwordMin}-${constraints.passwordMax} characters with uppercase, lowercase, number, and special character.`
+                : `Enter your password. Maximum ${constraints.passwordMax} characters.`}
+            </span>
+          )}
         </label>
 
-        <button className="primary" type="submit" disabled={loading}>
+        <button
+          className="primary"
+          type="submit"
+          disabled={loading || isSubmitDisabled}
+        >
           {loading
             ? "Working..."
             : isRegister
@@ -81,13 +127,6 @@ export function AuthForm({
       <button className="ghost" type="button" onClick={onModeChange}>
         {isRegister ? "Already have an account?" : "Need a new organization?"}
       </button>
-
-      <div className="demo-box">
-        <strong>Seeded demo accounts</strong>
-        <span>`alice@acme.test` / `password123`</span>
-        <span>`mark@acme.test` / `password123`</span>
-        <span>`gina@globex.test` / `password123`</span>
-      </div>
     </div>
   );
 }
