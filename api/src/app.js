@@ -10,7 +10,15 @@ const app = express();
 
 app.use(
   cors({
-    origin: env.clientOrigin === "*" ? true : env.clientOrigin,
+    origin: (origin, callback) => {
+      const allowedOrigin = env.clientOrigin === "*" ? true : env.clientOrigin;
+      // Allow if it matches env, if it's a vercel preview, or if there's no origin (like server-to-server)
+      if (!origin || origin === allowedOrigin || origin.endsWith(".vercel.app") || allowedOrigin === true) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true
   })
 );

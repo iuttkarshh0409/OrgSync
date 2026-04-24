@@ -6,6 +6,7 @@ import { TaskDetailPanel } from "./components/TaskDetailPanel";
 import { TaskListPanel } from "./components/TaskListPanel";
 
 const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? "http://localhost:4000" : "/api");
+console.log("OrgSync API URL:", API_URL);
 const CONSTRAINTS = {
   organizationNameMax: 80,
   fullNameMin: 3,
