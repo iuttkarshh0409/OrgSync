@@ -169,7 +169,7 @@ Isolation rules:
 ## Project Structure
 
 ```text
-codex-projects/
+OrgSync/
 |-- api/
 |   |-- scripts/
 |   |   |-- init.sql
