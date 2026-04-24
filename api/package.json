@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "node --watch src/server.js",
     "start": "node src/server.js",
-    "test": "jest"
+    "test": "jest",
+    "db:truncate": "docker compose exec db psql -U postgres -d task_manager -c \"TRUNCATE organizations, users, tasks, task_activity_logs RESTART IDENTITY CASCADE;\"",
+    "db:reset": "docker compose down -v && docker compose up --build"
   },
   "devDependencies": {
     "jest": "^29.7.0"
