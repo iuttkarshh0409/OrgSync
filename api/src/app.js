@@ -31,13 +31,19 @@ app.use((req, res, next) => {
 });
 app.use(express.json({ limit: "10kb" }));
 
-app.get("/health", (_req, res) => {
+const router = express.Router();
+
+router.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.use("/auth", authRateLimit, authRoutes);
-app.use("/users", userRoutes);
-app.use("/tasks", taskRoutes);
+router.use("/auth", authRateLimit, authRoutes);
+router.use("/users", userRoutes);
+router.use("/tasks", taskRoutes);
+
+// Mount at both /api and root to handle Vercel rewrites and local dev
+app.use("/api", router);
+app.use("/", router);
 
 app.use((err, _req, res, _next) => {
   console.error(err);
